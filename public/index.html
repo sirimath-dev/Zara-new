@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#09060b">
+<title>★ QUEEN ZARA ★ | WhatsApp Automation</title>
+<meta name="description" content="Queen Zara WhatsApp Automation Bot. Connect your WhatsApp and manage your bot with a premium dashboard.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+ --bg:#09060b;
+ --card:#130d16;
+ --card2:#1b101e;
+ --pink:#ff4fa3;
+ --pink2:#ff80c2;
+ --purple:#a855f7;
+ --text:#fff5fb;
+ --muted:#a99aa8;
+ --border:rgba(255,105,180,.15);
+ --green:#4ade80;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+ background:var(--bg);
+ color:var(--text);
+ font-family:Inter,sans-serif;
+ overflow-x:hidden;
+}
+
+body:before{
+ content:"";
+ position:fixed;
+ inset:0;
+ background:
+ radial-gradient(circle at 10% 10%,rgba(255,40,140,.13),transparent 35%),
+ radial-gradient(circle at 90% 35%,rgba(168,85,247,.10),transparent 35%);
+ pointer-events:none;
+ z-index:-1;
+}
+
+a{text-decoration:none;color:inherit}
+button,input{font:inherit}
+
+.container{
+ width:min(1120px,92%);
+ margin:auto;
+}
+
+header{
+ position:sticky;
+ top:0;
+ z-index:100;
+ background:rgba(9,6,11,.85);
+ backdrop-filter:blur(20px);
+ border-bottom:1px solid var(--border);
+}
+
+.nav{
+ min-height:75px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:20px;
+}
+
+.brand{
+ display:flex;
+ align-items:center;
+ gap:12px;
+ font-weight:900;
+ font-size:17px;
+}
+
+.brand img{
+ width:43px;
+ height:43px;
+ border-radius:13px;
+ object-fit:cover;
+ border:1px solid var(--pink);
+}
+
+.brand span{color:var(--pink)}
+
+.navlinks{
+ display:flex;
+ gap:23px;
+ font-size:12px;
+ color:var(--muted);
+ font-weight:700;
+}
+
+.navlinks a:hover{color:var(--pink)}
+
+.menu-btn{
+ display:none;
+ background:var(--card2);
+ border:1px solid var(--border);
+ color:white;
+ padding:10px 14px;
+ border-radius:10px;
+}
+
+.hero{
+ padding:90px 0 65px;
+ display:grid;
+ grid-template-columns:1.1fr .9fr;
+ gap:45px;
+ align-items:center;
+}
+
+.badge{
+ display:inline-flex;
+ align-items:center;
+ gap:8px;
+ border:1px solid var(--border);
+ background:rgba(255,79,163,.08);
+ color:var(--pink2);
+ padding:9px 15px;
+ border-radius:30px;
+ font-size:11px;
+ font-weight:800;
+ letter-spacing:1px;
+ margin-bottom:23px;
+}
+
+.dot{
+ width:7px;
+ height:7px;
+ background:var(--green);
+ border-radius:50%;
+ box-shadow:0 0 10px var(--green);
+}
+
+h1{
+ font-family:"Space Grotesk",sans-serif;
+ font-size:clamp(42px,6vw,72px);
+ line-height:1.05;
+ letter-spacing:-3px;
+ font-weight:900;
+}
+
+.gradient{
+ background:linear-gradient(100deg,#ff4fa3,#ff9ed0,#b66aff);
+ -webkit-background-clip:text;
+ color:transparent;
+}
+
+.hero p{
+ color:var(--muted);
+ line-height:1.9;
+ font-size:14px;
+ max-width:520px;
+ margin:23px 0;
+}
+
+.buttons{
+ display:flex;
+ gap:12px;
+ flex-wrap:wrap;
+}
+
+.btn{
+ display:inline-flex;
+ justify-content:center;
+ align-items:center;
+ gap:8px;
+ padding:14px 21px;
+ border-radius:12px;
+ font-size:12px;
+ font-weight:800;
+ transition:.25s;
+ cursor:pointer;
+ border:1px solid transparent;
+}
+
+.btn:hover{transform:translateY(-3px)}
+
+.btn:disabled{
+ opacity:.6;
+ cursor:not-allowed;
+ transform:none;
+}
+
+.primary{
+ background:linear-gradient(100deg,#ff3595,#d946ef);
+ color:white;
+ box-shadow:0 8px 30px rgba(255,45,145,.2);
+}
+
+.secondary{
+ border-color:var(--border);
+ background:var(--card);
+}
+
+.terminal{
+ background:linear-gradient(145deg,#1b1020,#0e0911);
+ border:1px solid var(--border);
+ border-radius:22px;
+ padding:24px;
+ box-shadow:0 20px 70px rgba(0,0,0,.4);
+ position:relative;
+ overflow:hidden;
+}
+
+.terminal:before{
+ content:"";
+ position:absolute;
+ width:200px;
+ height:200px;
+ background:var(--pink);
+ filter:blur(120px);
+ opacity:.14;
+ right:-50px;
+ top:-50px;
+}
+
+.terminal-top{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ border-bottom:1px solid var(--border);
+ padding-bottom:17px;
+ margin-bottom:20px;
+}
+
+.terminal-logo{
+ display:flex;
+ align-items:center;
+ gap:10px;
+ font-size:12px;
+ font-weight:900;
+}
+
+.terminal-logo img{
+ width:35px;
+ height:35px;
+ border-radius:10px;
+ object-fit:cover;
+}
+
+.terminal-dots{
+ color:#ff4fa3;
+ letter-spacing:4px;
+}
+
+.terminal pre{
+ white-space:pre-wrap;
+ line-height:2.2;
+ font-family:monospace;
+ font-size:12px;
+ color:#d9c6d7;
+}
+
+.success{color:var(--green)}
+.pink{color:var(--pink2)}
+
+.stats{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:15px;
+ margin-bottom:75px;
+}
+
+.stat{
+ padding:23px;
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:17px;
+ text-align:center;
+}
+
+.stat h2{
+ font-size:30px;
+ color:var(--pink);
+ margin-bottom:7px;
+}
+
+.stat p{
+ color:var(--muted);
+ font-size:11px;
+ font-weight:700;
+}
+
+section{padding:65px 0}
+
+.section-title{
+ text-align:center;
+ margin-bottom:40px;
+}
+
+.section-title h2{
+ font-size:clamp(26px,4vw,38px);
+ font-weight:900;
+ margin-bottom:12px;
+}
+
+.section-title p{
+ font-size:13px;
+ color:var(--muted);
+ line-height:1.8;
+}
+
+.connect-grid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:20px;
+}
+
+.card{
+ background:linear-gradient(145deg,#180f1c,#100b13);
+ border:1px solid var(--border);
+ border-radius:20px;
+ padding:27px;
+}
+
+.card h3{
+ font-size:19px;
+ margin-bottom:12px;
+}
+
+.card>p{
+ font-size:12px;
+ color:var(--muted);
+ line-height:1.8;
+ margin-bottom:23px;
+}
+
+.input-group{
+ display:flex;
+ background:#09060b;
+ border:1px solid var(--border);
+ border-radius:12px;
+ overflow:hidden;
+ margin-bottom:15px;
+}
+
+.input-group span{
+ padding:15px;
+ color:var(--pink);
+ font-weight:900;
+}
+
+.input-group input{
+ background:transparent;
+ border:0;
+ outline:0;
+ color:white;
+ width:100%;
+ padding:15px 10px;
+}
+
+.full{width:100%}
+
+#pairResult{
+ display:none;
+ margin-top:17px;
+ padding:17px;
+ border-radius:12px;
+ background:rgba(255,79,163,.08);
+ border:1px solid var(--border);
+ text-align:center;
+}
+
+.pair-code{
+ font-size:25px;
+ letter-spacing:5px;
+ color:var(--pink);
+ font-weight:900;
+ margin:12px 0;
+ overflow-wrap:anywhere;
+}
+
+.steps{list-style:none}
+
+.steps li{
+ display:flex;
+ gap:13px;
+ margin:19px 0;
+ color:#c9b8c8;
+ font-size:12px;
+ line-height:1.8;
+}
+
+.steps li span{
+ width:26px;
+ height:26px;
+ flex-shrink:0;
+ display:grid;
+ place-items:center;
+ background:rgba(255,79,163,.12);
+ color:var(--pink);
+ border-radius:8px;
+ font-weight:900;
+}
+
+.category-tabs{
+ display:flex;
+ justify-content:center;
+ gap:9px;
+ flex-wrap:wrap;
+ margin-bottom:25px;
+}
+
+.tab{
+ background:var(--card);
+ color:var(--muted);
+ border:1px solid var(--border);
+ padding:10px 15px;
+ border-radius:10px;
+ font-size:11px;
+ font-weight:800;
+ cursor:pointer;
+}
+
+.tab.active{
+ background:var(--pink);
+ color:white;
+}
+
+.features{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:15px;
+}
+
+.feature{
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:16px;
+ padding:21px;
+ transition:.25s;
+}
+
+.feature:hover{
+ transform:translateY(-5px);
+ border-color:var(--pink);
+}
+
+.feature-icon{
+ font-size:25px;
+ margin-bottom:15px;
+}
+
+.feature h3{
+ font-size:14px;
+ margin-bottom:8px;
+}
+
+.feature p{
+ font-size:11px;
+ color:var(--muted);
+ line-height:1.8;
+}
+
+.status-grid{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:15px;
+}
+
+.status-box{
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:15px;
+ padding:22px;
+}
+
+.status-box small{
+ color:var(--muted);
+ font-size:11px;
+}
+
+.status-box h2{
+ font-size:25px;
+ color:var(--pink);
+ margin-top:12px;
+}
+
+.panel-card{
+ text-align:center;
+ padding:50px 25px;
+ border-radius:22px;
+ border:1px solid var(--border);
+ background:
+ radial-gradient(circle at top,rgba(255,79,163,.13),transparent 70%),
+ var(--card);
+}
+
+.panel-card h2{
+ font-size:30px;
+ margin-bottom:15px;
+}
+
+.panel-card p{
+ color:var(--muted);
+ font-size:12px;
+ line-height:1.9;
+ margin-bottom:25px;
+}
+
+.faq{
+ max-width:780px;
+ margin:auto;
+}
+
+details{
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:13px;
+ padding:18px;
+ margin-bottom:12px;
+}
+
+summary{
+ cursor:pointer;
+ font-size:13px;
+ font-weight:800;
+}
+
+details p{
+ font-size:12px;
+ color:var(--muted);
+ line-height:1.9;
+ padding-top:15px;
+}
+
+footer{
+ border-top:1px solid var(--border);
+ padding:35px 0;
+ text-align:center;
+ margin-top:50px;
+}
+
+.footer-brand{
+ font-size:19px;
+ font-weight:900;
+ margin-bottom:12px;
+}
+
+footer p{
+ font-size:11px;
+ color:var(--muted);
+ line-height:2;
+}
+
+.dev{
+ color:var(--pink);
+ font-weight:900;
+}
+
+.toast{
+ position:fixed;
+ bottom:25px;
+ left:50%;
+ transform:translate(-50%,100px);
+ opacity:0;
+ background:#241329;
+ border:1px solid var(--pink);
+ border-radius:12px;
+ padding:14px 20px;
+ font-size:12px;
+ z-index:999;
+ transition:.3s;
+ max-width:90%;
+ text-align:center;
+}
+
+.toast.show{
+ transform:translate(-50%,0);
+ opacity:1;
+}
+
+@media(max-width:800px){
+ .hero{grid-template-columns:1fr;padding-top:60px}
+
+ .navlinks{
+  display:none;
+  position:absolute;
+  top:75px;
+  left:0;
+  right:0;
+  background:#100b13;
+  padding:25px;
+  flex-direction:column;
+  border-bottom:1px solid var(--border);
+ }
+
+ .navlinks.open{display:flex}
+ .menu-btn{display:block}
+ .features{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:550px){
+ .stats{gap:8px}
+ .stat{padding:17px 5px}
+ .stat h2{font-size:23px}
+ .stat p{font-size:9px}
+ .connect-grid{grid-template-columns:1fr}
+ .features{grid-template-columns:1fr 1fr;gap:9px}
+ .feature{padding:15px}
+ .feature h3{font-size:12px}
+ .feature p{font-size:10px}
+ .status-grid{grid-template-columns:1fr 1fr}
+ h1{letter-spacing:-2px}
+ .hero{gap:30px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+ <div class="container nav">
+
+  <a href="#" class="brand">
+   <img src="https://files.catbox.moe/29hxc2.jpg" alt="Queen Zara">
+   <div>★ QUEEN <span>ZARA</span> ★</div>
+  </a>
+
+  <nav class="navlinks" id="navlinks">
+   <a href="#features">Features</a>
+   <a href="#connect">Connect</a>
+   <a href="#status">Status</a>
+   <a href="#panel">Dashboard</a>
+   <a href="#faq">FAQ</a>
+  </nav>
+
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+ </div>
+</header>
+
+<main>
+<div class="container">
+
+<section class="hero">
+
+ <div>
+  <div class="badge">
+   <span class="dot"></span>
+   WHATSAPP AUTOMATION SYSTEM
+  </div>
+
+  <h1>
+   Your WhatsApp,<br>
+   on <span class="gradient">autopilot.</span>
+  </h1>
+
+  <p>
+   Meet ★ QUEEN ZARA ★ — your premium WhatsApp automation assistant.
+   Manage your sessions, protect conversations, save statuses
+   and control your bot from one beautiful dashboard.
+  </p>
+
+  <div class="buttons">
+   <a href="#connect" class="btn primary">🚀 Connect Your Bot</a>
+   <a href="#panel" class="btn secondary">⚙️ Settings Panel</a>
+  </div>
+ </div>
+
+ <div class="terminal">
+  <div class="terminal-top">
+   <div class="terminal-logo">
+    <img src="https://files.catbox.moe/29hxc2.jpg" alt="">
+    QUEEN ZARA ~ SESSION
+   </div>
+   <div class="terminal-dots">● ● ●</div>
+  </div>
+
+  <pre>
+<span class="pink">$</span> queen-zara --start
+
+Initializing WhatsApp...
+<span class="success">✓ System initialized</span>
+
+Loading session...
+<span class="success">✓ Multi-device ready</span>
+
+Loading commands...
+<span class="success">✓ Commands loaded</span>
+
+Anti-delete · Status · Protection
+
+<span class="success">● Bot is online and listening</span>
+
+<span class="pink">★ QUEEN ZARA ★</span>
+  </pre>
+ </div>
+
+</section>
+
+<div class="stats">
+ <div class="stat">
+  <h2 id="activeBots">--</h2>
+  <p>ACTIVE BOTS</p>
+ </div>
+
+ <div class="stat">
+  <h2>85+</h2>
+  <p>BOT COMMANDS</p>
+ </div>
+
+ <div class="stat">
+  <h2>24/7</h2>
+  <p>ONLINE SUPPORT</p>
+ </div>
+</div>
+
+<section id="connect">
+
+ <div class="section-title">
+  <h2>Connect Your <span class="gradient">WhatsApp</span></h2>
+  <p>Connect your number using a pairing code.</p>
+ </div>
+
+ <div class="connect-grid">
+
+  <div class="card">
+
+   <h3>🔗 Get a Pairing Code</h3>
+
+   <p>
+    Enter your WhatsApp number with country code.
+    Make sure your number is active.
+   </p>
+
+   <div class="input-group">
+    <span>+</span>
+    <input
+     type="tel"
+     id="phone"
+     placeholder="947XXXXXXXX"
+     autocomplete="tel"
+     inputmode="numeric"
+    >
+   </div>
+
+   <button class="btn primary full" id="generateBtn" onclick="generatePair()">
+    GENERATE PAIRING CODE →
+   </button>
+
+   <div id="pairResult">
+    <small>YOUR PAIRING CODE</small>
+    <div class="pair-code" id="pairCode">--------</div>
+    <button class="btn secondary" onclick="copyCode()">COPY CODE</button>
+   </div>
+
+  </div>
+
+  <div class="card">
+
+   <h3>📱 How to Link</h3>
+
+   <p>Follow these simple steps to connect your WhatsApp.</p>
+
+   <ol class="steps">
+    <li><span>1</span>Enter your WhatsApp number and generate a code.</li>
+    <li><span>2</span>Open WhatsApp on your phone.</li>
+    <li><span>3</span>Go to Settings → Linked Devices.</li>
+    <li><span>4</span>Tap Link with phone number.</li>
+    <li><span>5</span>Enter your generated pairing code.</li>
+   </ol>
+
+  </div>
+
+ </div>
+</section>
+
+<section id="features">
+
+ <div class="section-title">
+  <h2>Everything in <span class="gradient">One Bot</span></h2>
+  <p>Explore the features of Queen Zara.</p>
+ </div>
+
+ <div class="category-tabs">
+  <button class="tab active" onclick="filterFeatures('all',this)">All</button>
+  <button class="tab" onclick="filterFeatures('security',this)">Security</button>
+  <button class="tab" onclick="filterFeatures('status',this)">Status</button>
+  <button class="tab" onclick="filterFeatures('media',this)">Media</button>
+  <button class="tab" onclick="filterFeatures('groups',this)">Groups</button>
+  <button class="tab" onclick="filterFeatures('utility',this)">Utilities</button>
+  <button class="tab" onclick="filterFeatures('automation',this)">Automation</button>
+ </div>
+
+ <div class="features" id="featureGrid"></div>
+
+</section>
+
+<section id="status">
+
+ <div class="section-title">
+  <h2>System <span class="gradient">Status</span></h2>
+  <p>Live platform information from the bot server.</p>
+ </div>
+
+ <div class="status-grid">
+
+  <div class="status-box">
+   <small>PLATFORM STATUS</small>
+   <h2 id="platformStatus">Checking...</h2>
+  </div>
+
+  <div class="status-box">
+   <small>ACTIVE BOTS</small>
+   <h2 id="statusBots">--</h2>
+  </div>
+
+  <div class="status-box">
+   <small>UPTIME</small>
+   <h2 id="uptime">--</h2>
+  </div>
+
+  <div class="status-box">
+   <small>COMMANDS</small>
+   <h2>85+</h2>
+  </div>
+
+  <div class="status-box">
+   <small>RESPONSE TIME</small>
+   <h2 id="responseTime">--</h2>
+  </div>
+
+  <div class="status-box">
+   <small>LAST CHECK</small>
+   <h2 id="lastCheck">--</h2>
+  </div>
+
+ </div>
+</section>
+
+<section id="panel">
+
+ <div class="panel-card">
+
+  <div style="font-size:45px;margin-bottom:20px">👑</div>
+
+  <h2>Queen Zara <span class="gradient">Dashboard</span></h2>
+
+  <p>
+   Access your bot settings and manage your connected WhatsApp session.
+   Control available features and automation settings from one place.
+  </p>
+
+  <a href="/setting.html" class="btn primary">
+   OPEN CONTROL PANEL →
+  </a>
+
+ </div>
+</section>
+
+<section id="faq">
+
+ <div class="section-title">
+  <h2>Quick <span class="gradient">Answers</span></h2>
+  <p>Frequently asked questions.</p>
+ </div>
+
+ <div class="faq">
+
+  <details>
+   <summary>How do I connect my WhatsApp?</summary>
+   <p>Generate a pairing code, open WhatsApp → Linked Devices → Link with phone number and enter your code.</p>
+  </details>
+
+  <details>
+   <summary>How do I open the dashboard?</summary>
+   <p>Use the Dashboard button and log in using the credentials provided by your bot backend.</p>
+  </details>
+
+  <details>
+   <summary>What is Anti Delete?</summary>
+   <p>It is a feature that can notify you about deleted messages where supported by your bot configuration. Respect other people's privacy.</p>
+  </details>
+
+  <details>
+   <summary>Can I save WhatsApp statuses?</summary>
+   <p>Available status tools depend on your bot configuration and the permissions of your WhatsApp account.</p>
+  </details>
+
+  <details>
+   <summary>Does Queen Zara support multiple sessions?</summary>
+   <p>The website supports a multi-session interface. Actual multi-session support must be implemented in the backend.</p>
+  </details>
+
+  <details>
+   <summary>Is Queen Zara free?</summary>
+   <p>The website is free to use. Hosting and backend services may have separate costs.</p>
+  </details>
+
+  <details>
+   <summary>How can I disconnect my bot?</summary>
+   <p>Use the disconnect option in your dashboard or remove the linked device directly from WhatsApp.</p>
+  </details>
+
+ </div>
+</section>
+
+</div>
+</main>
+
+<footer>
+ <div class="container">
+
+  <div class="footer-brand">
+   ★ 𝑸𝒖𝒆𝒆𝒏 𝒁𝒂𝒓𝒂 ★
+  </div>
+
+  <p>
+   Premium WhatsApp Automation System<br>
+   Designed for a smarter messaging experience.
+  </p>
+
+  <p style="margin-top:17px">
+   DEVELOPED WITH ❤️ BY<br>
+   <span class="dev">𝑺𝒊𝒓𝒊𝒎𝒂𝒕𝒉 𝑫𝒆𝒗 &lt;/&gt;</span>
+  </p>
+
+  <p style="margin-top:18px">
+   © 2026 QUEEN ZARA. All Rights Reserved.
+  </p>
+
+ </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+
+/* ==================================
+   QUEEN ZARA API CONFIGURATION
+================================== */
+
+const API = {
+ pair: "/code/",
+ status: "/code/status"
+};
+
+
+/* MENU */
+
+function toggleMenu(){
+ document.getElementById("navlinks").classList.toggle("open");
+}
+
+document.querySelectorAll(".navlinks a").forEach(a=>{
+ a.addEventListener("click",()=>{
+  document.getElementById("navlinks").classList.remove("open");
+ });
+});
+
+
+/* TOAST */
+
+let toastTimer;
+
+function toast(message){
+ const t=document.getElementById("toast");
+
+ t.textContent=message;
+ t.classList.add("show");
+
+ clearTimeout(toastTimer);
+
+ toastTimer=setTimeout(()=>{
+  t.classList.remove("show");
+ },3000);
+}
+
+
+/* SAFE JSON RESPONSE */
+
+async function readJSON(response){
+
+ const contentType=response.headers.get("content-type") || "";
+
+ if(!contentType.includes("application/json")){
+  throw new Error("Invalid server response. Check your backend routes.");
+ }
+
+ return await response.json();
+}
+
+
+/* PAIRING CODE */
+
+async function generatePair(){
+
+ const phone=document.getElementById("phone").value.trim();
+ const btn=document.getElementById("generateBtn");
+ const result=document.getElementById("pairResult");
+
+ if(!/^[1-9]\d{7,14}$/.test(phone)){
+  toast("Please enter a valid international phone number.");
+  return;
+ }
+
+ btn.disabled=true;
+ btn.textContent="CONNECTING...";
+ result.style.display="none";
+
+ try{
+
+  const response=await fetch(
+   API.pair+"?number="+encodeURIComponent(phone),
+   {
+    method:"GET",
+    cache:"no-store",
+    headers:{
+     "Accept":"application/json"
+    }
+   }
+  );
+
+  const data=await readJSON(response);
+
+  if(!response.ok){
+   throw new Error(data.error || data.message || "Pairing request failed.");
+  }
+
+  if(data.status==="already_connected"){
+   toast(data.message || "This number is already connected.");
+   return;
+  }
+
+  if(!data.code){
+   throw new Error(data.error || data.message || "Pairing code was not returned.");
+  }
+
+  document.getElementById("pairCode").textContent=data.code;
+  result.style.display="block";
+
+  toast("Pairing code generated successfully!");
+
+ }catch(error){
+
+  console.error("Pairing error:",error);
+  toast(error.message || "Server connection failed.");
+
+ }finally{
+
+  btn.disabled=false;
+  btn.textContent="GENERATE PAIRING CODE →";
+
+ }
+
+}
+
+
+/* COPY CODE */
+
+async function copyCode(){
+
+ const code=document.getElementById("pairCode").textContent;
+
+ if(!code || code==="--------"){
+  toast("No pairing code available.");
+  return;
+ }
+
+ try{
+
+  await navigator.clipboard.writeText(code);
+  toast("Pairing code copied!");
+
+ }catch(error){
+
+  const temp=document.createElement("textarea");
+  temp.value=code;
+  document.body.appendChild(temp);
+  temp.select();
+
+  try{
+   document.execCommand("copy");
+   toast("Pairing code copied!");
+  }catch{
+   toast("Unable to copy code.");
+  }
+
+  temp.remove();
+
+ }
+
+}
+
+
+/* FEATURES */
+
+const featureData=[
+
+ {
+  icon:"🛡️",
+  name:"Anti Delete",
+  desc:"Deleted-message notifications where supported.",
+  cat:"security"
+ },
+
+ {
+  icon:"✏️",
+  name:"Anti Edit",
+  desc:"Edit notifications for supported messages.",
+  cat:"security"
+ },
+
+ {
+  icon:"👁️",
+  name:"View Once",
+  desc:"Privacy-respecting view-once notifications.",
+  cat:"security"
+ },
+
+ {
+  icon:"📸",
+  name:"Status Saver",
+  desc:"Save statuses that you are permitted to access.",
+  cat:"status"
+ },
+
+ {
+  icon:"🔄",
+  name:"Status Forward",
+  desc:"Forward supported status updates.",
+  cat:"status"
+ },
+
+ {
+  icon:"💬",
+  name:"Auto Reply",
+  desc:"Automatically respond to configured messages.",
+  cat:"automation"
+ },
+
+ {
+  icon:"⏰",
+  name:"Scheduled Messages",
+  desc:"Schedule messages for later delivery.",
+  cat:"automation"
+ },
+
+ {
+  icon:"📅",
+  name:"Scheduled Status",
+  desc:"Schedule status updates.",
+  cat:"automation"
+ },
+
+ {
+  icon:"📥",
+  name:"Media Tools",
+  desc:"Manage supported media operations.",
+  cat:"media"
+ },
+
+ {
+  icon:"👥",
+  name:"Group Management",
+  desc:"Manage supported group settings.",
+  cat:"groups"
+ },
+
+ {
+  icon:"🤖",
+  name:"AI Assistant",
+  desc:"AI-powered chat assistance.",
+  cat:"utility"
+ },
+
+ {
+  icon:"📊",
+  name:"Bot Analytics",
+  desc:"View session and activity information.",
+  cat:"utility"
+ },
+
+ {
+  icon:"🌐",
+  name:"Multi Session",
+  desc:"Manage multiple connected sessions.",
+  cat:"utility"
+ },
+
+ {
+  icon:"⚡",
+  name:"Auto React",
+  desc:"Configure automatic reactions.",
+  cat:"automation"
+ },
+
+ {
+  icon:"🔔",
+  name:"Notifications",
+  desc:"Configure bot notifications.",
+  cat:"utility"
+ },
+
+ {
+  icon:"⚙️",
+  name:"Custom Settings",
+  desc:"Customize your bot preferences.",
+  cat:"utility"
+ }
+
+];
+
+
+function renderFeatures(category="all"){
+
+ const grid=document.getElementById("featureGrid");
+
+ const filtered=category==="all"
+ ?featureData
+ :featureData.filter(f=>f.cat===category);
+
+ grid.innerHTML=filtered.map(f=>`
+
+  <div class="feature">
+
+   <div class="feature-icon">${f.icon}</div>
+
+   <h3>${f.name}</h3>
+
+   <p>${f.desc}</p>
+
+  </div>
+
+ `).join("");
+
+}
+
+
+function filterFeatures(category,button){
+
+ document.querySelectorAll(".tab").forEach(t=>{
+  t.classList.remove("active");
+ });
+
+ button.classList.add("active");
+
+ renderFeatures(category);
+
+}
+
+
+renderFeatures();
+
+
+/* FORMAT UPTIME */
+
+function formatUptime(seconds){
+
+ seconds=Number(seconds);
+
+ if(!Number.isFinite(seconds) || seconds<0){
+  return "--";
+ }
+
+ const days=Math.floor(seconds/86400);
+ const hours=Math.floor((seconds%86400)/3600);
+ const minutes=Math.floor((seconds%3600)/60);
+
+ if(days>0){
+  return `${days}d ${hours}h`;
+ }
+
+ if(hours>0){
+  return `${hours}h ${minutes}m`;
+ }
+
+ return `${minutes}m`;
+}
+
+
+/* LIVE STATUS */
+
+async function loadStatus(){
+
+ const start=performance.now();
+
+ try{
+
+  const response=await fetch(API.status,{
+   method:"GET",
+   cache:"no-store",
+   headers:{
+    "Accept":"application/json"
+   }
+  });
+
+  const data=await readJSON(response);
+
+  if(!response.ok){
+   throw new Error(data.message || "Status unavailable");
+  }
+
+  const elapsed=Math.round(performance.now()-start);
+
+  // Backend online property is an active session count.
+  const activeCount=Number(data.online ?? 0);
+
+  // A successful response means the server is reachable.
+  const serverStatus=String(data.status || "").toLowerCase();
+
+  const isOperational=
+   !["offline","error","stopped","unavailable"].includes(serverStatus);
+
+  document.getElementById("platformStatus").textContent=
+   isOperational ? "ONLINE" : "OFFLINE";
+
+  document.getElementById("activeBots").textContent=
+   Number.isFinite(activeCount) ? activeCount : "--";
+
+  document.getElementById("statusBots").textContent=
+   Number.isFinite(activeCount) ? activeCount : "--";
+
+  document.getElementById("uptime").textContent=
+   formatUptime(data.uptime);
+
+  document.getElementById("responseTime").textContent=
+   elapsed+" ms";
+
+  document.getElementById("lastCheck").textContent=
+   new Date().toLocaleTimeString();
+
+ }catch(error){
+
+  console.error("Status error:",error);
+
+  document.getElementById("platformStatus").textContent="UNKNOWN";
+  document.getElementById("activeBots").textContent="--";
+  document.getElementById("statusBots").textContent="--";
+  document.getElementById("uptime").textContent="--";
+  document.getElementById("responseTime").textContent="--";
+  document.getElementById("lastCheck").textContent="Unavailable";
+
+ }
+
+}
+
+
+loadStatus();
+
+setInterval(loadStatus,15000);
+
+
+/* REVEAL ANIMATION */
+
+const observer=new IntersectionObserver(entries=>{
+
+ entries.forEach(entry=>{
+
+  if(entry.isIntersecting){
+
+   entry.target.style.opacity="1";
+   entry.target.style.transform="translateY(0)";
+
+   observer.unobserve(entry.target);
+
+  }
+
+ });
+
+},{threshold:.1});
+
+
+document.querySelectorAll(".card,.feature,.stat,.status-box").forEach(el=>{
+
+ el.style.opacity="0";
+ el.style.transform="translateY(18px)";
+ el.style.transition="opacity .6s ease,transform .6s ease";
+
+ observer.observe(el);
+
+});
+
+</script>
+
+</body>
+ </html>

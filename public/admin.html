@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="robots" content="noindex,nofollow"/>
+<title>ǫᴜᴇᴇɴ ʜɪʀᴜ </> — Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+<style>
+.top{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+.wm2{font:800 1.2rem var(--hd);letter-spacing:-.02em}.wm2 span{color:var(--r)}
+.lock{max-width:430px;margin:40px auto;text-align:center;border:1px solid var(--ln);background:var(--card);border-radius:24px;padding:36px 26px}
+.lock h1{font:800 1.7rem var(--hd);margin-bottom:6px}.lock p{color:var(--mu);font-size:.86rem;margin-bottom:18px}
+.tabs{display:flex;gap:6px;margin:6px 0 14px;overflow-x:auto}
+.tab{flex:none;padding:10px 16px;border-radius:12px;border:1px solid var(--ln);background:var(--card);color:var(--mu);font:600 .86rem 'DM Sans';cursor:pointer}
+.tab[aria-selected=true]{background:#fff;color:#14101a;border-color:#fff}
+.pane{display:none;border:1px solid var(--ln);border-radius:22px;background:var(--card);padding:24px;margin-bottom:60px}
+.pane.on{display:block}
+.pane h2{font:800 1.4rem var(--hd);margin-bottom:14px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.kpi{border:1px solid var(--ln);border-radius:14px;background:var(--card2);padding:14px}
+.kpi small{color:var(--mu);font-size:.74rem}.kpi b{display:block;font:700 1.4rem var(--hd);margin-top:2px}
+.srow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--ln);border-radius:12px;margin-bottom:8px;background:var(--card2);flex-wrap:wrap}
+.srow b{display:block;font-size:.9rem}.srow small{color:var(--mu);font-size:.74rem}
+.srow .acts{display:flex;gap:6px}
+.dot2{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;background:#ff4d64}.dot2.on{background:var(--ok);box-shadow:0 0 8px var(--ok)}
+.btn.del{color:#ff6b84;border:1px solid rgba(255,77,100,.4);background:none}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.tile{display:flex;align-items:center;gap:10px;padding:11px 14px;border:1px solid var(--ln);border-radius:12px;background:var(--card2);font-size:.85rem;cursor:pointer}
+.tile input{accent-color:var(--r);width:16px;height:16px}
+#edit{margin-top:18px;padding-top:18px;border-top:1px solid var(--ln)}
+#con{height:460px;overflow:auto;background:#050408;border:1px solid var(--ln);border-radius:14px;padding:12px;font:400 12px/1.6 var(--mono);white-space:pre-wrap;word-break:break-word}
+#con .l{display:block}#con .t{color:#6d6677}
+#con .INFO{color:#5fd0ff}#con .OK{color:var(--ok)}#con .WARN{color:var(--warn)}#con .ERROR{color:#ff6b84}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
+.cmdbox{border:1px solid var(--ln);border-radius:14px;background:var(--card2);padding:16px;margin-bottom:12px}
+.cmdbox h3{font:700 1rem var(--hd);margin-bottom:10px}
+@media(max-width:760px){.fgrid,.tiles{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <header class="top"><span class="wm2">ɴᴏᴍᴏ <span>ᴀᴅᴍɪɴ</span></span><button class="btn g sm hide" id="logout">Log out</button></header>
+
+ <div class="lock" id="lock">
+  <h1>🛡️ Admin panel</h1>
+  <p>Only the owner number can log in, using its dashboard password.</p>
+  <div class="fld"><b>+</b><input id="lnum" type="tel" inputmode="numeric" placeholder="94720689634"/></div>
+  <div class="fld"><input id="lpass" type="password" placeholder="Password"/></div>
+  <button class="btn r" style="width:100%;margin-top:14px;height:50px" id="vbtn">Login</button>
+  <div class="out" id="lmsg"></div>
+ </div>
+
+ <div class="hide" id="app">
+  <nav class="tabs">
+   <button class="tab" aria-selected="true" data-p="ov">Overview</button>
+   <button class="tab" aria-selected="false" data-p="se">Sessions</button>
+   <button class="tab" aria-selected="false" data-p="co">Console</button>
+   <button class="tab" aria-selected="false" data-p="cm">Owner commands</button>
+  </nav>
+
+  <section class="pane on" id="p-ov"><h2>Overview</h2><div class="kpis" id="kpis"></div></section>
+
+  <section class="pane" id="p-se">
+   <h2>Sessions</h2>
+   <div class="bar"><button class="btn g sm" id="srefresh">Refresh</button></div>
+   <div id="slist"></div>
+   <div id="edit" class="hide"></div>
+  </section>
+
+  <section class="pane" id="p-co">
+   <h2>Console</h2>
+   <div class="bar">
+    <select id="lvl" style="height:38px;border-radius:10px;background:#0a0810;color:#fff;border:1px solid var(--ln);padding:0 10px"><option value="">All levels</option><option>OK</option><option>INFO</option><option>WARN</option><option>ERROR</option></select>
+    <button class="btn g sm" id="pause">Pause</button>
+    <button class="btn g sm" id="cclear">Clear</button>
+   </div>
+   <div id="con"></div>
+  </section>
+
+  <section class="pane" id="p-cm">
+   <h2>Owner commands</h2>
+   <div class="cmdbox"><h3>Bot control</h3><div class="bar">
+    <button class="btn g sm" data-run="restart">♻️ Reload plugins (.restart)</button>
+    <button class="btn g sm" data-run="reconnect">🔁 Reconnect all sessions</button></div></div>
+   <div class="cmdbox"><h3>.sub — all bots follow a channel</h3>
+    <div class="in"><input id="subLink" placeholder="https://whatsapp.com/channel/xxxx"/></div>
+    <button class="btn r sm" data-run="sub">Follow with all bots</button></div>
+   <div class="cmdbox"><h3>.chreact — all bots react to a channel post</h3>
+    <div class="in"><input id="crLink" placeholder="https://whatsapp.com/channel/xxxx/123"/></div>
+    <div class="in"><input id="crEmo" placeholder="❤️🔥😍"/></div>
+    <button class="btn r sm" data-run="chreact">React with all bots</button></div>
+   <div class="out" id="cmsg"></div>
+  </section>
+ </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+let token = null;
+try { token = sessionStorage.getItem('nomo_admin'); } catch (e) {}
+function toast(t) { const el = $('toast'); el.textContent = t; el.classList.add('show'); setTimeout(() => el.classList.remove('show'), 2600); }
+function say(id, t, c) { const el = $(id); el.textContent = t || ''; el.className = 'out' + (c ? ' ' + c : ''); }
+async function api(path, method = 'GET', body) {
+  const r = await fetch('/code' + path, { method, headers: { 'Content-Type': 'application/json', ...(token ? { Authorization: 'Bearer ' + token } : {}) }, body: body ? JSON.stringify(body) : undefined });
+  let d = {}; try { d = await r.json(); } catch (e) {}
+  if (!r.ok) { const e = new Error(d.error || 'Request failed'); e.status = r.status; throw e; }
+  return d;
+}
+const fmtUp = (s) => { const d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60); return (d ? d + 'd ' : '') + h + 'h ' + m + 'm'; };
+let timers = [];
+function stopTimers() { timers.forEach(clearInterval); timers = []; }
+function lockUI(msg) {
+  token = null; try { sessionStorage.removeItem('nomo_admin'); } catch (e) {}
+  stopTimers(); $('lock').classList.remove('hide'); $('app').classList.add('hide'); $('logout').classList.add('hide');
+  if (msg) say('lmsg', msg, 'e');
+}
+const guard = (e) => { if (e.status === 401) lockUI('Session expired. Log in again.'); else toast(e.message); };
+
+async function login() {
+  const number = $('lnum').value.replace(/\D/g, ''), password = $('lpass').value;
+  if (!number || !password) return say('lmsg', 'Enter number and password.', 'e');
+  $('vbtn').disabled = true; say('lmsg', 'Checking…');
+  try {
+    const d = await api('/admin/login', 'POST', { number, password });
+    token = d.token; try { sessionStorage.setItem('nomo_admin', token); } catch (e) {}
+    $('lpass').value = ''; say('lmsg', ''); start();
+  } catch (e) { say('lmsg', e.message, 'e'); }
+  $('vbtn').disabled = false;
+}
+$('vbtn').onclick = login;
+$('lpass').addEventListener('keydown', (e) => { if (e.key === 'Enter') login(); });
+$('logout').onclick = async () => { try { await api('/admin/logout', 'POST'); } catch (e) {} lockUI(); };
+
+document.querySelectorAll('.tab').forEach(b => b.onclick = () => {
+  document.querySelectorAll('.tab').forEach(x => x.setAttribute('aria-selected', String(x === b)));
+  document.querySelectorAll('.pane').forEach(p => p.classList.toggle('on', p.id === 'p-' + b.dataset.p));
+});
+
+/* overview */
+async function loadStats() {
+  try {
+    const s = await api('/admin/stats');
+    const k = [['Online bots', s.online], ['Total sessions', s.total], ['Uptime', fmtUp(s.uptime)], ['Commands', s.commands],
+      ['RAM (rss)', s.rssMB + ' MB'], ['Heap', s.heapMB + ' MB'], ['VV cache', s.vvCache], ['Status cache', s.statusCache], ['Node', s.node]];
+    $('kpis').innerHTML = k.map(([a, b]) => `<div class="kpi"><small>${a}</small><b>${b}</b></div>`).join('');
+  } catch (e) { guard(e); }
+}
+
+/* sessions */
+const FIELDS = [
+  ['b', 'AUTO_STATUS_SEEN', 'Auto status seen'], ['b', 'AUTO_STATUS_REACT', 'Auto status react'], ['b', 'STATUS_FORWARD', 'Status forward'],
+  ['b', 'STATUS_SAVE_EMOJI', 'Save status by reply'], ['b', 'AUTO_READ', 'Auto read'], ['b', 'ALWAYS_ONLINE', 'Always online'],
+  ['b', 'AUTO_TYPING', 'Auto typing'], ['b', 'AUTO_RECORDING', 'Auto recording'], ['b', 'AUTO_LIKE', 'Like mode'],
+  ['b', 'ANTI_DELETE', 'Anti delete'], ['b', 'ANTI_EDIT', 'Anti edit'], ['b', 'ANTI_VIEWONCE', 'View once recovery'],
+  ['b', 'ANTI_CALL', 'Anti call'], ['b', 'VV_EMOJI_REPLY', 'View once emoji reply'], ['b', 'AWAY_MODE', 'Away mode'], ['b', 'FORWARD_TAG', 'Forward tag'],
+  ['s', 'mode', 'Mode', ['public', 'private']], ['s', 'ANTI_DEST', 'Notices go to', ['owner', 'chat']],
+  ['s', 'ANTI_DELETE_SCOPE', 'Anti delete scope', ['all', 'private', 'group']], ['s', 'ANTI_EDIT_SCOPE', 'Anti edit scope', ['all', 'private', 'group']],
+  ['t', 'BOT_NAME', 'Bot name'], ['t', 'PREFIX', 'Prefix'], ['t', 'BOT_FOOTER', 'Footer'], ['t', 'RCD_IMAGE_PATH', 'Logo (https)'],
+  ['t', 'STATUS_EMOJIS', 'Status react emojis'], ['t', 'STATUS_SAVE_EMOJIS', 'Status save emojis'], ['t', 'LIKE_EMOJIS', 'Like emojis'],
+  ['t', 'VV_EMOJIS', 'View once emojis'], ['t', 'AWAY_MSG', 'Away message']
+];
+let editing = null;
+async function loadSessions() {
+  try {
+    const d = await api('/admin/sessions'), box = $('slist'); box.replaceChildren();
+    if (!d.sessions.length) { box.innerHTML = '<div class="hint">No sessions yet.</div>'; return; }
+    d.sessions.forEach(s => {
+      const row = document.createElement('div'); row.className = 'srow';
+      row.innerHTML = `<div><b><span class="dot2 ${s.online ? 'on' : ''}"></span>+${s.number}${s.admin ? ' 👑' : ''}</b><small>${s.online ? 'online · ' + fmtUp(s.uptime) : 'offline'}${s.name ? ' · ' + s.name.replace(/[<>&]/g, '') : ''} · ${s.mode}</small></div>
+        <div class="acts"><button class="btn g sm" data-e="${s.number}">Settings</button><button class="btn del sm" data-u="${s.number}">Unlink</button></div>`;
+      box.appendChild(row);
+    });
+    box.querySelectorAll('[data-e]').forEach(b => b.onclick = () => openEdit(b.dataset.e));
+    box.querySelectorAll('[data-u]').forEach(b => b.onclick = async () => {
+      if (!confirm('Unlink +' + b.dataset.u + ' and delete its session?')) return;
+      try { await api('/admin/unlink/' + b.dataset.u, 'POST'); toast('Unlinked'); $('edit').classList.add('hide'); loadSessions(); loadStats(); } catch (e) { guard(e); }
+    });
+  } catch (e) { guard(e); }
+}
+async function openEdit(n) {
+  try {
+    const d = await api('/admin/config/' + n); editing = n;
+    const box = $('edit'); box.classList.remove('hide');
+    const tiles = FIELDS.filter(f => f[0] === 'b').map(f => `<label class="tile"><input type="checkbox" data-k="${f[1]}" ${d.config[f[1]] === true || d.config[f[1]] === 'true' ? 'checked' : ''}> ${f[2]}</label>`).join('');
+    const rest = FIELDS.filter(f => f[0] !== 'b').map(f => {
+      const v = String(d.config[f[1]] ?? '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+      if (f[0] === 's') return `<div class="in"><label>${f[2]}</label><select data-k="${f[1]}">${f[3].map(o => `<option ${String(d.config[f[1]] || f[3][0]) === o ? 'selected' : ''}>${o}</option>`).join('')}</select></div>`;
+      return `<div class="in"><label>${f[2]}</label><input data-k="${f[1]}" value="${v}"></div>`;
+    }).join('');
+    box.innerHTML = `<h2 style="font:800 1.2rem var(--hd);margin-bottom:12px">Settings of +${n}</h2><div class="tiles">${tiles}</div><div class="fgrid">${rest}</div><button class="btn r" id="esave">Save</button> <button class="btn g" id="ecancel">Close</button>`;
+    $('ecancel').onclick = () => box.classList.add('hide');
+    $('esave').onclick = async () => {
+      const c = {};
+      box.querySelectorAll('[data-k]').forEach(el => { c[el.dataset.k] = el.type === 'checkbox' ? el.checked : el.value.trim(); });
+      // empty required text fields are skipped so validation does not reject them
+      ['RCD_IMAGE_PATH', 'BOT_NAME', 'BOT_FOOTER', 'PREFIX', 'STATUS_EMOJIS'].forEach(k => { if (!c[k]) delete c[k]; });
+      try { await api('/admin/config/' + editing, 'POST', { config: c }); toast('Saved'); loadSessions(); } catch (e) { guard(e); }
+    };
+    box.scrollIntoView({ behavior: 'smooth' });
+  } catch (e) { guard(e); }
+}
+$('srefresh').onclick = loadSessions;
+
+/* console */
+let lastId = 0, paused = false;
+$('pause').onclick = () => { paused = !paused; $('pause').textContent = paused ? 'Resume' : 'Pause'; };
+$('cclear').onclick = async () => { try { await api('/admin/run', 'POST', { cmd: 'clearlogs' }); $('con').replaceChildren(); } catch (e) { guard(e); } };
+$('lvl').onchange = () => { $('con').replaceChildren(); lastId = 0; pollLogs(); };
+async function pollLogs() {
+  if (paused) return;
+  try {
+    const d = await api('/admin/logs?since=' + lastId), con = $('con'), want = $('lvl').value;
+    const stick = con.scrollTop + con.clientHeight >= con.scrollHeight - 30;
+    d.logs.forEach(l => {
+      lastId = l.id;
+      if (want && l.level !== want) return;
+      const el = document.createElement('span'); el.className = 'l';
+      const t = document.createElement('span'); t.className = 't'; t.textContent = new Date(l.t).toLocaleTimeString() + ' ';
+      const lv = document.createElement('span'); lv.className = l.level; lv.textContent = l.level.padEnd(5) + ' ' + l.msg;
+      el.append(t, lv); con.appendChild(el);
+    });
+    while (con.children.length > 600) con.removeChild(con.firstChild);
+    if (stick) con.scrollTop = con.scrollHeight;
+  } catch (e) { guard(e); }
+}
+
+/* owner commands */
+document.querySelectorAll('[data-run]').forEach(b => b.onclick = async () => {
+  const cmd = b.dataset.run;
+  const body = { cmd, link: cmd === 'sub' ? $('subLink').value.trim() : $('crLink').value.trim(), emojis: $('crEmo').value };
+  b.disabled = true; say('cmsg', 'Running…');
+  try { const d = await api('/admin/run', 'POST', body); say('cmsg', d.message || 'Done', 'ok'); }
+  catch (e) { if (e.status === 401) guard(e); else say('cmsg', e.message, 'e'); }
+  b.disabled = false;
+});
+
+function start() {
+  $('lock').classList.add('hide'); $('app').classList.remove('hide'); $('logout').classList.remove('hide');
+  stopTimers(); lastId = 0; $('con').replaceChildren();
+  loadStats(); loadSessions(); pollLogs();
+  timers.push(setInterval(loadStats, 10000), setInterval(pollLogs, 2000));
+}
+if (token) start();
+</script>
+<script src="fx.js"></script>
+</body>
+</html>

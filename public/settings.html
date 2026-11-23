@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ǫᴜᴇᴇɴ ʜɪʀᴜ </> — Settings</title>
+<link rel="icon" href="/code/logo"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+<style>
+.top{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+.wm2{font:800 1.2rem var(--hd);letter-spacing:-.02em}.wm2 span{color:var(--r)}
+.top-r{display:flex;gap:8px}
+.toast{bottom:92px}
+
+/* login */
+.lock{max-width:430px;margin:40px auto;text-align:center;border:1px solid var(--ln);background:var(--card);border-radius:24px;padding:36px 26px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.lock .ic{width:62px;height:62px;border-radius:19px;margin:0 auto 12px;background:rgba(255,45,95,.1);border:1px solid rgba(255,45,95,.25);display:flex;align-items:center;justify-content:center;font-size:1.6rem}
+.lock h1{font:800 1.7rem var(--hd);letter-spacing:-.03em;margin-bottom:6px}
+.lock p{color:var(--mu);font-size:.86rem;margin-bottom:18px}
+
+/* bot card */
+.botcard{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--ln);border-radius:26px;overflow:hidden;background:var(--card);box-shadow:0 30px 80px rgba(0,0,0,.55)}
+.who{padding:32px;display:flex;align-items:center;gap:22px}
+.avatar{position:relative;flex:none}
+.avatar .lg{width:96px;height:96px;border-radius:28px;font:800 2.2rem var(--hd)}
+.avatar i{position:absolute;right:-3px;bottom:-3px;width:20px;height:20px;border-radius:50%;background:var(--ok);border:4px solid var(--card)}
+.avatar i.off{background:#ff4d64}
+.who h1{font:800 clamp(1.5rem,3.4vw,2.2rem)/1.05 var(--hd);letter-spacing:-.035em;word-break:break-word}
+.who p{color:var(--mu);font-size:.86rem;margin-top:6px}
+.pill{display:inline-flex;align-items:center;gap:7px;margin-top:12px;padding:5px 12px;border-radius:99px;border:1px solid rgba(53,224,138,.3);background:rgba(53,224,138,.07);color:var(--ok);font-size:.76rem;font-weight:700}
+.pill.off{color:#ff6b84;border-color:rgba(255,77,100,.3);background:rgba(255,77,100,.07)}
+.chatbg{background:#0b1210;border-left:1px solid var(--ln);padding:26px;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.chatbg>small{color:#6f847b;font-size:.76rem}
+.bub{max-width:310px;background:#1b2723;border-radius:4px 16px 16px 16px;overflow:hidden;border:1px solid rgba(255,255,255,.05)}
+.pimg{aspect-ratio:16/9;background:#10181a;display:flex;align-items:center;justify-content:center;color:#5d746b;font-size:.8rem;overflow:hidden}
+.pimg img{width:100%;height:100%;object-fit:cover;display:block}
+.cap{padding:10px 12px 8px;font-size:.82rem;white-space:pre-wrap;word-break:break-word}
+.cap b{display:block;margin-bottom:4px}
+.cap .ft{margin-top:8px;padding-left:9px;border-left:3px solid #2f4a40;color:#9fb6ac;font-size:.78rem}
+.cap time{display:block;text-align:right;color:#6f847b;font-size:.62rem;margin-top:4px}
+
+/* tabs */
+.tabs{display:flex;gap:6px;margin:18px 0 14px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:12px;border:1px solid var(--ln);background:var(--card);color:var(--mu);font:600 .86rem 'DM Sans';cursor:pointer;transition:.2s}
+.tab:hover{color:#fff;border-color:rgba(255,255,255,.2)}
+.tab[aria-selected=true]{background:#fff;color:#14101a;border-color:#fff}
+.cnt{font-style:normal;min-width:20px;padding:1px 6px;border-radius:99px;background:var(--r);color:#fff;font-size:.7rem;text-align:center}
+.cnt[hidden]{display:none}
+
+/* panes */
+.pane{display:none;border:1px solid var(--ln);border-radius:22px;background:var(--card);padding:26px;margin-bottom:110px}
+.pane.on{display:block}
+.pane h2{font:800 1.45rem var(--hd);letter-spacing:-.03em}
+.pane>p{color:var(--mu);font-size:.84rem;margin:4px 0 20px}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+.lab{display:block;font-size:.76rem;font-weight:700;color:var(--mu);margin-bottom:6px}
+.note{font-size:.76rem;color:var(--mu);margin-top:6px}.note.good{color:var(--ok)}.note.bad{color:#ff6b84}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.tile{position:relative;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 16px;border:1px solid var(--ln);border-radius:14px;background:var(--card2);cursor:pointer;transition:border-color .2s,background .2s}
+.tile:hover{border-color:rgba(255,255,255,.2)}
+.tile input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.tile b{display:block;font-size:.9rem}
+.tile small{display:block;color:var(--mu);font-size:.76rem;line-height:1.35;margin-top:2px}
+.sw2{flex:none;width:40px;height:23px;border-radius:99px;background:#2a2433;position:relative;transition:.2s}
+.sw2::after{content:'';position:absolute;top:3px;left:3px;width:17px;height:17px;border-radius:50%;background:#8a8494;transition:.2s}
+.tile:has(input:checked){border-color:var(--ln-r);background:rgba(255,45,95,.07)}
+.tile input:checked~.sw2{background:var(--r)}
+.tile input:checked~.sw2::after{left:20px;background:#fff}
+.tile:has(input:focus-visible){outline:2px solid var(--r);outline-offset:2px}
+.seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:6px;padding:5px;border:1px solid var(--ln);border-radius:14px;background:#0a0810}
+.seg button{border:none;background:none;color:var(--mu);padding:10px 12px;border-radius:10px;cursor:pointer;font:600 .86rem 'DM Sans'}
+.seg button small{display:block;font-weight:400;font-size:.72rem;margin-top:2px}
+.seg button[aria-pressed=true]{background:var(--r);color:#fff}
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.srow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--ln);border-radius:12px;margin-bottom:8px;background:var(--card2)}
+.srow b{display:block;font-size:.88rem}.srow small{color:var(--mu);font-size:.74rem;word-break:break-word}
+.empty{padding:22px;border:1px dashed var(--ln);border-radius:12px;color:var(--mu);font-size:.84rem;text-align:center}
+.danger{margin-top:22px;padding:18px;border:1px solid rgba(255,77,100,.35);border-radius:14px}
+.danger b{display:block;margin-bottom:4px}.danger p{color:var(--mu);font-size:.82rem;margin-bottom:12px}
+.btn.del{color:#ff6b84;border:1px solid rgba(255,77,100,.4);background:none}
+
+/* save bar */
+.savebar{position:fixed;left:50%;bottom:22px;transform:translate(-50%,30px);opacity:0;pointer-events:none;display:flex;align-items:center;gap:12px;padding:9px 9px 9px 20px;border:1px solid var(--ln-r);border-radius:100px;background:rgba(15,13,20,.94);backdrop-filter:blur(14px);box-shadow:0 16px 50px rgba(0,0,0,.6);z-index:60;transition:.25s;max-width:calc(100vw - 24px)}
+.savebar.on{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.savebar .msg{font-size:.84rem;font-weight:600}.savebar .msg.e{color:#ff6b84}
+
+@media(max-width:860px){
+ .botcard{grid-template-columns:1fr}.chatbg{border-left:none;border-top:1px solid var(--ln)}
+ .tiles,.fgrid,.sgrid{grid-template-columns:1fr}.who{padding:24px}.pane{padding:20px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <header class="top">
+  <a class="wm2" href="index.html">ɴᴏᴍᴏ <span>ᴍɪɴɪ</span> &lt;/&gt;</a>
+  <div class="top-r"><a class="btn g sm" href="index.html">Home</a><button class="btn g sm hide" id="logout">Log out</button></div>
+ </header>
+
+ <div class="lock" id="lock">
+  <div class="ic">🔐</div>
+  <h1>Control panel</h1>
+  <p>Enter your connected number and the dashboard password the bot sent to your WhatsApp.</p>
+  <div class="fld"><b>+</b><input id="lnum" type="tel" inputmode="numeric" placeholder="94771234567" autocomplete="username"/></div>
+  <div class="fld"><input id="lpass" type="password" placeholder="Password" autocomplete="current-password"/></div>
+  <button class="btn r" style="width:100%;margin-top:14px;height:50px" id="vbtn">Unlock panel</button>
+  <div class="out" id="lmsg"></div>
+  <div class="hint" style="text-align:left">Forgot it? Send <code>.resetpass</code> from your bot's own chat and a new password will be sent there.</div>
+ </div>
+
+ <div class="hide" id="app">
+  <section class="botcard">
+   <div class="who">
+    <div class="avatar"><div class="lg" id="mLogo">N</div><i id="dotst"></i></div>
+    <div><h1 id="mName">—</h1><p id="mInfo">—</p><span class="pill" id="stPill"><span id="stTxt">—</span></span></div>
+   </div>
+   <div class="chatbg">
+    <small>How your bot's messages look</small>
+    <div class="bub">
+     <div class="pimg" id="pvLogo">No logo</div>
+     <div class="cap"><b id="pvTitle">—</b><span id="pvHint"></span><div class="ft" id="pvFoot"></div><time id="pvTime"></time></div>
+    </div>
+   </div>
+  </section>
+
+  <nav class="tabs" role="tablist">
+   <button class="tab" role="tab" aria-selected="true" data-g="identity">Branding</button>
+   <button class="tab" role="tab" aria-selected="false" data-g="status">Status <em class="cnt" hidden></em></button>
+   <button class="tab" role="tab" aria-selected="false" data-g="protect">Protection <em class="cnt" hidden></em></button>
+   <button class="tab" role="tab" aria-selected="false" data-g="general">General <em class="cnt" hidden></em></button>
+   <button class="tab" role="tab" aria-selected="false" data-g="schedule">Schedule</button>
+   <button class="tab" role="tab" aria-selected="false" data-g="security">Security</button>
+  </nav>
+
+  <section class="pane on" id="g-identity" role="tabpanel">
+   <h2>Branding</h2><p>Your name, footer and logo appear in every message the bot sends, including anti delete and anti edit notices. The preview above updates as you type.</p>
+   <div class="fgrid">
+    <div class="in"><label for="BOT_NAME">Bot name</label><input id="BOT_NAME" maxlength="40" placeholder="My Bot"/></div>
+    <div class="in"><label for="PREFIX">Command prefix</label><input id="PREFIX" maxlength="3"/></div>
+   </div>
+   <div class="in"><label for="BOT_FOOTER">Footer text</label><input id="BOT_FOOTER" maxlength="80" placeholder="© Powered by My Bot"/></div>
+   <div class="in"><label for="RCD_IMAGE_PATH">Logo link (public https image)</label><input id="RCD_IMAGE_PATH" placeholder="https://…"/><div class="note" id="logoNote"></div></div>
+   <div class="hint">The forward style (channel link) is fixed and can not be changed.</div>
+  </section>
+
+  <section class="pane" id="g-status" role="tabpanel">
+   <h2>Status</h2><p>Automatic handling of your contacts' statuses.</p>
+   <div class="tiles">
+    <label class="tile"><input type="checkbox" id="AUTO_STATUS_SEEN"><span><b>Auto status seen</b><small>View every status automatically</small></span><span class="sw2"></span></label>
+    <label class="tile"><input type="checkbox" id="AUTO_STATUS_REACT"><span><b>Auto status react</b><small>React with a random emoji</small></span><span class="sw2"></span></label>
+    <label class="tile"><input type="checkbox" id="STATUS_FORWARD"><span><b>Status forward</b><small>Every new status is sent to your own chat</small></span><span class="sw2"></span></label>
+    <label class="tile"><input type="checkbox" id="STATUS_SAVE_EMOJI"><span><b>Save by reply</b><small>Reply to a status with .save or an emoji to get it in your own chat</small></span><span class="sw2"></span></label>
+   </div>
+   <div class="in"><label for="STATUS_EMOJIS">React emojis (comma separated)</label><input id="STATUS_EMOJIS" placeholder="💚,❤️,🔥"/></div>
+   <div class="in"><label for="STATUS_SAVE_EMOJIS">Save emojis (empty = any emoji)</label><input id="STATUS_SAVE_EMOJIS" placeholder="💾,📥"/></div>
+  </section>
+
+  <section class="pane" id="g-protect" role="tabpanel">
+   <h2>Protection</h2><p>Catch deleted, edited and view once messages.</p>
+   <div class="tiles">
+    <label class="tile"><input type="checkbox" id="ANTI_DELETE"><span><b>Anti delete</b><small>Show messages people delete</small></span><span class="sw2"></span></label>
+    <label class="tile"><input type="checkbox" id="ANTI_EDIT"><span><b>Anti edit</b><small>Show the old and new text of edits</small></span><span class="sw2"></span></label>
+    <label class="tile"><input type="checkbox" id="ANTI_VIEWONCE"><span><b>View once recovery</b><small>Save view once media automatically</small></span><span class="sw2"></span></label>
+    <label class="tile"><input type="checkbox" id="ANTI_CALL"><span><b>Anti call</b><small>Reject incoming calls</small></span><span class="sw2"></span></label>
+    <label class="tile"><input type="checkbox" id="VV_EMOJI_REPLY"><span><b>View once emoji reply</b><small>Reply with an emoji to send it to your inbox</small></span><span class="sw2"></span></label>
+   </div>
+   <div class="in"><label for="VV_EMOJIS">Trigger emojis (empty = any emoji)</label><input id="VV_EMOJIS" placeholder="😍,🔥,👀"/></div>
+   <div class="in"><span class="lab">Send notices to</span>
+    <input type="hidden" id="ANTI_DEST">
+    <div class="seg" data-target="ANTI_DEST" role="group" aria-label="Send notices to"><button data-v="owner">My own chat</button><button data-v="chat">Same chat</button></div></div>
+   <div class="in"><span class="lab">Anti delete works in</span>
+    <input type="hidden" id="ANTI_DELETE_SCOPE">
+    <div class="seg" data-target="ANTI_DELETE_SCOPE" role="group" aria-label="Anti delete scope"><button data-v="all">All chats</button><button data-v="private">Private only</button><button data-v="group">Groups only</button></div></div>
+   <div class="in"><span class="lab">Anti edit works in</span>
+    <input type="hidden" id="ANTI_EDIT_SCOPE">
+    <div class="seg" data-target="ANTI_EDIT_SCOPE" role="group" aria-label="Anti edit scope"><button data-v="all">All chats</button><button data-v="private">Private only</button><button data-v="group">Groups only</button></div></div>
+  </section>
+
+  <section class="pane" id="g-general" role="tabpanel">
+   <h2>General</h2><p>Bot mode, presence and reading behaviour.</p>
+   <div class="in"><span class="lab">Bot mode</span>
+    <input type="hidden" id="mode">
+    <div class="seg" data-target="mode" role="group" aria-label="Bot mode"><button data-v="public">Public<small>Everyone can use commands</small></button><button data-v="private">Private<small>Only you</small></button></div></div>
+   <div class="tiles" style="margin-top:20px">
+    <label class="tile"><input type="checkbox" id="AUTO_READ"><span><b>Auto read</b><small>Blue tick on incoming messages</small></span><span class="sw2"></span></label>
+    <label class="tile"><input type="checkbox" id="ALWAYS_ONLINE"><span><b>Always online</b><small>Keep the online status showing</small></span><span class="sw2"></span></label>
+    <label class="tile"><input type="checkbox" id="AUTO_TYPING"><span><b>Auto typing</b><small>Show “typing…” on new messages</small></span><span class="sw2"></span></label>
+    <label class="tile"><input type="checkbox" id="AUTO_RECORDING"><span><b>Auto recording</b><small>Show “recording audio…”</small></span><span class="sw2"></span></label>
+    <label class="tile"><input type="checkbox" id="AUTO_LIKE"><span><b>Like mode</b><small>React to incoming private messages</small></span><span class="sw2"></span></label>
+    <label class="tile"><input type="checkbox" id="AWAY_MODE"><span><b>Away mode</b><small>Auto reply once every 3 hours per chat</small></span><span class="sw2"></span></label>
+   </div>
+   <div class="fgrid">
+    <div class="in"><label for="LIKE_EMOJIS">Like emojis (comma separated)</label><input id="LIKE_EMOJIS" placeholder="❤️,🔥,😍"/></div>
+    <div class="in"><label for="AWAY_MSG">Away message</label><input id="AWAY_MSG" maxlength="200" placeholder="I am away right now…"/></div>
+   </div>
+   <div class="hint">You can also change these from WhatsApp: <code>.settings</code>, <code>.antidelete on</code>, <code>.mode private</code>, <code>.delscope group</code></div>
+  </section>
+
+  <section class="pane" id="g-schedule" role="tabpanel">
+   <h2>Schedule</h2><p>Send a message or post a status at a set time.</p>
+   <div class="sgrid">
+    <div>
+     <div class="in"><label for="SC_KIND">Type</label><select id="SC_KIND"><option value="message">Message</option><option value="status">Status</option></select></div>
+     <div class="in" id="scToWrap"><label for="SC_TO">Send to (number with country code)</label><input id="SC_TO" inputmode="numeric" placeholder="94771234567"/></div>
+     <div class="in"><label for="SC_TEXT">Text</label><input id="SC_TEXT" maxlength="1000"/></div>
+     <div class="in"><label for="SC_IMG">Image link (optional)</label><input id="SC_IMG" placeholder="https://…"/></div>
+     <div class="fgrid">
+      <div class="in"><label for="SC_AT">Time</label><input id="SC_AT" type="datetime-local"/></div>
+      <div class="in"><label for="SC_REP">Repeat</label><select id="SC_REP"><option value="none">Once</option><option value="daily">Every day</option></select></div>
+     </div>
+     <button class="btn r" id="scAdd" style="width:100%">Add schedule</button>
+    </div>
+    <div id="scList"></div>
+   </div>
+  </section>
+
+  <section class="pane" id="g-security" role="tabpanel">
+   <h2>Security</h2><p>Change the password used to open this panel.</p>
+   <div style="max-width:460px">
+    <div class="in"><label for="PW_OLD">Current password</label><input id="PW_OLD" type="password" autocomplete="current-password"/></div>
+    <div class="in"><label for="PW_NEW">New password (min 4 characters)</label><input id="PW_NEW" type="password" minlength="4" maxlength="64" autocomplete="new-password"/></div>
+    <div class="in"><label for="PW_NEW2">Repeat new password</label><input id="PW_NEW2" type="password" autocomplete="new-password"/></div>
+    <button class="btn r" id="pwBtn" style="width:100%">Change password</button>
+    <div class="out" id="pmsg"></div>
+    <div class="hint">From WhatsApp (bot's own chat only): <code>.resetpass myNewPass</code> or <code>.password myNewPass</code>. Forgot it? Send <code>.resetpass</code> for a random one.</div>
+    <div class="danger"><b>Disconnect bot</b><p>Removes the linked device and deletes this session. You can connect again from the home page.</p><button class="btn del sm" id="disc">Disconnect bot</button></div>
+   </div>
+  </section>
+ </div>
+</div>
+
+<div class="savebar" id="savebar" role="status">
+ <span class="msg" id="dmsg">You have unsaved changes</span>
+ <button class="btn g sm" id="discard">Discard</button>
+ <button class="btn r sm" id="save">Save changes</button>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const BOOLS = ['AUTO_STATUS_SEEN','AUTO_STATUS_REACT','STATUS_FORWARD','STATUS_SAVE_EMOJI','AUTO_READ','ALWAYS_ONLINE','AUTO_TYPING','AUTO_RECORDING','ANTI_DELETE','ANTI_EDIT','ANTI_VIEWONCE','ANTI_CALL','AUTO_LIKE','VV_EMOJI_REPLY','AWAY_MODE'];
+const TEXTS = ['BOT_NAME','BOT_FOOTER','RCD_IMAGE_PATH','PREFIX','STATUS_EMOJIS','STATUS_SAVE_EMOJIS','LIKE_EMOJIS','VV_EMOJIS','AWAY_MSG','ANTI_DEST','ANTI_DELETE_SCOPE','ANTI_EDIT_SCOPE','mode'];
+const SC = {a:'ᴀ',b:'ʙ',c:'ᴄ',d:'ᴅ',e:'ᴇ',f:'ꜰ',g:'ɢ',h:'ʜ',i:'ɪ',j:'ᴊ',k:'ᴋ',l:'ʟ',m:'ᴍ',n:'ɴ',o:'ᴏ',p:'ᴘ',q:'ǫ',r:'ʀ',s:'s',t:'ᴛ',u:'ᴜ',v:'ᴠ',w:'ᴡ',x:'x',y:'ʏ',z:'ᴢ'};
+const sc = (s) => String(s).toLowerCase().replace(/[a-z]/g, (c) => SC[c]);
+let token = null, snap = '', myNumber = '';
+try { token = sessionStorage.getItem('nomo_token'); } catch (e) {}
+
+function toast(t) { const el = $('toast'); el.textContent = t; el.classList.add('show'); setTimeout(() => el.classList.remove('show'), 2600); }
+function say(id, text, cls) { const el = $(id); el.textContent = text || ''; el.className = 'out' + (cls ? ' ' + cls : ''); }
+async function api(path, method = 'GET', body) {
+  const r = await fetch('/code' + path, { method, headers: { 'Content-Type': 'application/json', ...(token ? { Authorization: 'Bearer ' + token } : {}) }, body: body ? JSON.stringify(body) : undefined });
+  let d = {}; try { d = await r.json(); } catch (e) {}
+  if (!r.ok) { const e = new Error(d.error || 'Request failed'); e.status = r.status; throw e; }
+  return d;
+}
+const upText = (s) => Math.floor(s / 3600) + 'h ' + Math.floor(s % 3600 / 60) + 'm';
+
+function setLogo(el, url, fallback) {
+  el.textContent = '';
+  if (url && /^https:\/\//.test(url)) {
+    const img = new Image(); img.alt = ''; img.onerror = () => { el.textContent = fallback; }; img.src = url; el.appendChild(img);
+  } else el.textContent = fallback;
+}
+function paintLogo() {
+  const u = $('RCD_IMAGE_PATH').value.trim(), note = $('logoNote');
+  setLogo($('mLogo'), u, 'N'); setLogo($('pvLogo'), u, 'No logo');
+  if (!u) { note.textContent = 'Add an https image link to show your logo.'; note.className = 'note'; return; }
+  if (!/^https:\/\//.test(u)) { note.textContent = 'The link must start with https://'; note.className = 'note bad'; return; }
+  note.textContent = 'Checking image…'; note.className = 'note';
+  const t = new Image();
+  t.onload = () => { if ($('RCD_IMAGE_PATH').value.trim() === u) { note.textContent = 'Logo works (' + t.naturalWidth + '×' + t.naturalHeight + ')'; note.className = 'note good'; } };
+  t.onerror = () => { if ($('RCD_IMAGE_PATH').value.trim() === u) { note.textContent = 'This image could not be loaded. Use a public https link.'; note.className = 'note bad'; } };
+  t.src = u;
+}
+function paintBrand() {
+  const name = $('BOT_NAME').value.trim() || 'Your bot', d = new Date();
+  $('mName').textContent = name;
+  $('pvTitle').textContent = '┌─ム ' + sc(name) + ' </> ' + sc('menu');
+  $('pvHint').textContent = 'Send ' + ($('PREFIX').value || '.') + 'menu to see all commands';
+  $('pvFoot').textContent = $('BOT_FOOTER').value.trim();
+  $('pvFoot').classList.toggle('hide', !$('BOT_FOOTER').value.trim());
+  $('pvTime').textContent = String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+}
+function paintSegs() {
+  document.querySelectorAll('.seg').forEach(g => g.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === $(g.dataset.target).value))));
+}
+function paintCounts() {
+  let total = 0;
+  document.querySelectorAll('.tab').forEach(t => {
+    const em = t.querySelector('.cnt'); if (!em) return;
+    const n = $('g-' + t.dataset.g).querySelectorAll('input[type=checkbox]:checked').length;
+    em.textContent = n; em.hidden = !n; total += n;
+  });
+  $('mInfo').textContent = '+' + myNumber + ' · ' + total + ' feature' + (total === 1 ? '' : 's') + ' on';
+}
+
+const collect = () => { const c = {}; BOOLS.forEach(k => c[k] = $(k).checked); TEXTS.forEach(k => c[k] = $(k).value.trim()); return c; };
+function fill(c) {
+  BOOLS.forEach(k => $(k).checked = c[k] === true || c[k] === 'true');
+  TEXTS.forEach(k => { $(k).value = c[k] !== undefined ? c[k] : ''; });
+  if (!$('mode').value) $('mode').value = 'public';
+  if (!$('ANTI_DEST').value) $('ANTI_DEST').value = 'owner';
+  if (!$('ANTI_DELETE_SCOPE').value) $('ANTI_DELETE_SCOPE').value = 'all';
+  if (!$('ANTI_EDIT_SCOPE').value) $('ANTI_EDIT_SCOPE').value = 'all';
+  paintLogo(); paintBrand(); paintSegs(); paintCounts();
+}
+function markDirty() {
+  const d = JSON.stringify(collect()) !== snap;
+  $('savebar').classList.toggle('on', d);
+  if (d) { $('dmsg').textContent = 'You have unsaved changes'; $('dmsg').className = 'msg'; }
+}
+const onEdit = () => { paintBrand(); paintCounts(); markDirty(); };
+$('app').addEventListener('input', onEdit);
+$('app').addEventListener('change', onEdit);
+let logoTimer = null;
+$('RCD_IMAGE_PATH').addEventListener('input', () => { clearTimeout(logoTimer); logoTimer = setTimeout(paintLogo, 400); });
+document.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => {
+  const t = $(b.closest('.seg').dataset.target); t.value = b.dataset.v;
+  t.dispatchEvent(new Event('input', { bubbles: true })); paintSegs();
+}));
+document.querySelectorAll('.tab').forEach(b => b.onclick = () => {
+  document.querySelectorAll('.tab').forEach(x => x.setAttribute('aria-selected', String(x === b)));
+  document.querySelectorAll('.pane').forEach(p => p.classList.toggle('on', p.id === 'g-' + b.dataset.g));
+});
+
+async function doLogin() {
+  const number = $('lnum').value.replace(/\D/g, ''), password = $('lpass').value;
+  if (number.length < 8) return say('lmsg', 'Enter your number.', 'e');
+  if (!password) return say('lmsg', 'Enter your password.', 'e');
+  $('vbtn').disabled = true; say('lmsg', 'Checking…', '');
+  try {
+    const d = await api('/dash/login', 'POST', { number, password });
+    token = d.token; try { sessionStorage.setItem('nomo_token', token); } catch (e) {}
+    $('lpass').value = ''; say('lmsg', ''); load();
+  } catch (e) { say('lmsg', e.message, 'e'); }
+  $('vbtn').disabled = false;
+}
+$('vbtn').onclick = doLogin;
+$('lpass').addEventListener('keydown', (e) => { if (e.key === 'Enter') doLogin(); });
+
+function lockUI() {
+  token = null; try { sessionStorage.removeItem('nomo_token'); } catch (e) {}
+  $('lock').classList.remove('hide'); $('app').classList.add('hide'); $('logout').classList.add('hide');
+  $('savebar').classList.remove('on'); $('lpass').value = '';
+}
+async function load() {
+  try {
+    const d = await api('/dash/config');
+    myNumber = d.number;
+    $('lock').classList.add('hide'); $('app').classList.remove('hide'); $('logout').classList.remove('hide');
+    fill(d.config); snap = JSON.stringify(collect());
+    $('stTxt').textContent = (d.online ? 'Online' : 'Offline') + ' · up ' + upText(d.uptime);
+    $('stPill').classList.toggle('off', !d.online); $('dotst').classList.toggle('off', !d.online);
+    $('savebar').classList.remove('on');
+    loadSched();
+  } catch (e) { if (e.status === 401) { lockUI(); say('lmsg', 'Session expired. Log in again.', 'e'); } else toast(e.message); }
+}
+
+$('save').onclick = async () => {
+  $('save').disabled = $('discard').disabled = true; $('dmsg').textContent = 'Saving…'; $('dmsg').className = 'msg';
+  try { await api('/dash/config', 'POST', { config: collect() }); toast('Saved'); await load(); }
+  catch (e) {
+    if (e.status === 401) { lockUI(); say('lmsg', 'Session expired. Log in again.', 'e'); }
+    else { $('dmsg').textContent = e.message; $('dmsg').className = 'msg e'; }
+  }
+  $('save').disabled = $('discard').disabled = false;
+};
+$('discard').onclick = () => { fill(JSON.parse(snap)); $('savebar').classList.remove('on'); };
+
+$('pwBtn').onclick = async () => {
+  const cur = $('PW_OLD').value, nw = $('PW_NEW').value, nw2 = $('PW_NEW2').value;
+  if (!cur || !nw) return say('pmsg', 'Fill all fields.', 'e');
+  if (nw.length < 4) return say('pmsg', 'New password must be at least 4 characters.', 'e');
+  if (nw !== nw2) return say('pmsg', 'New passwords do not match.', 'e');
+  $('pwBtn').disabled = true; say('pmsg', 'Saving…', '');
+  try {
+    await api('/dash/password', 'POST', { current: cur, next: nw });
+    $('PW_OLD').value = $('PW_NEW').value = $('PW_NEW2').value = '';
+    say('pmsg', 'Password changed.', 'ok'); toast('Password changed');
+  } catch (e) { if (e.status === 401) { lockUI(); say('lmsg', 'Session expired. Log in again.', 'e'); } else say('pmsg', e.message, 'e'); }
+  $('pwBtn').disabled = false;
+};
+$('logout').onclick = async () => { try { await api('/dash/logout', 'POST'); } catch (e) {} lockUI(); };
+$('disc').onclick = async () => {
+  if (!confirm('Disconnect the bot and delete its session?')) return;
+  try { await api('/dash/disconnect', 'POST'); toast('Bot disconnected'); lockUI(); } catch (e) { toast(e.message); }
+};
+
+async function loadSched() {
+  try {
+    const d = await api('/dash/schedules'), box = $('scList'); box.replaceChildren();
+    if (!d.schedules.length) { const e = document.createElement('div'); e.className = 'empty'; e.textContent = 'Nothing scheduled yet. Fill in the form to add your first one.'; box.appendChild(e); return; }
+    d.schedules.forEach(s => {
+      const row = document.createElement('div'); row.className = 'srow';
+      const info = document.createElement('div');
+      const b = document.createElement('b'); b.textContent = s.kind === 'status' ? '📢 Status' : '💬 ' + s.to.split('@')[0];
+      const sm = document.createElement('small');
+      sm.textContent = new Date(s.at).toLocaleString() + (s.repeat === 'daily' ? ' · daily' : '') + ' · ' + (s.text || '(image)').slice(0, 40);
+      info.append(b, sm);
+      const del = document.createElement('button'); del.className = 'btn g sm'; del.textContent = 'Delete';
+      del.onclick = async () => { try { await api('/dash/schedules/' + s.id, 'DELETE'); loadSched(); } catch (e) { toast(e.message); } };
+      row.append(info, del); box.appendChild(row);
+    });
+  } catch (e) { if (e.status === 401) lockUI(); }
+}
+$('SC_KIND').onchange = () => $('scToWrap').classList.toggle('hide', $('SC_KIND').value === 'status');
+$('scAdd').onclick = async () => {
+  const at = new Date($('SC_AT').value).getTime();
+  if (!at) return toast('Pick a date and time');
+  try {
+    await api('/dash/schedules', 'POST', { kind: $('SC_KIND').value, to: $('SC_TO').value, text: $('SC_TEXT').value, image: $('SC_IMG').value, at, repeat: $('SC_REP').value });
+    toast('Scheduled'); $('SC_TEXT').value = ''; loadSched();
+  } catch (e) { toast(e.message); }
+};
+if (token) load();
+</script>
+<script src="fx.js"></script>
+</body>
+</html>
